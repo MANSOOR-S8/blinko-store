@@ -1,5 +1,6 @@
-﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+// placeholder for src/store/slices/uiSlice.ts
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // Product Types
 export interface Product {
@@ -8,6 +9,7 @@ export interface Product {
   title: string;
   description: string;
   price: number;
+  discount: number;
 }
 
 // State Types

@@ -5,6 +5,33 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Primary Brand */
+  --primary-color: #f8bd19;
+  --primary-hover: #e5a800;
+
+  /* Headings */
+  --heading-color: #111827;
+
+  /* Text */
+  --text-color: #4b5563;
+  --light-text: #9ca3af;
+
+  /* Backgrounds */
+  --background-color: #ffffff;
+  --section-bg: #f9fafb;
+
+  /* Footer */
+  --footer-bg: #3d464d;
+  --footer-text: #d1d5db;
+
+  /* Borders */
+  --border-color: #e5e7eb;
+
+  /* Card background */
+  --card-bg: #ffffff;
+}
+
 /* Swiper Custom Styles */
 .swiper-button-next,
 .swiper-button-prev {
@@ -83,3 +110,5 @@
   animation-delay: 300ms;
   opacity: 0;
 }
+
+/*  */

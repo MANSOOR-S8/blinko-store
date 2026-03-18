@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* scroll container */
+.scrollbar-hide {
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* hide scrollbar default */
+.scrollbar-hide::-webkit-scrollbar {
+  height: 0px;
+  transition: height 0.4s ease-in-out;
+}
+
+/* scrollbar thumb */
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+  transition: background-color 0.4s ease-in-out;
+}
+
+/* show scrollbar on hover */
+.group:hover .scrollbar-hide {
+  scrollbar-width: thin;
+}
+
+.group:hover .scrollbar-hide::-webkit-scrollbar {
+  height: 6px;
+}
+
+.group:hover .scrollbar-hide::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+}
+
+.group:hover .scrollbar-hide::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* @import "tailwindcss";
+
+
+.scrollbar-hide {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  height: 0px;
+  transition: all 0.3s;
+}
+
+
+
+.group:hover .scrollbar-hide::-webkit-scrollbar {
+  height: 6px;
+}
+
+.group:hover .scrollbar-hide::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.group:hover .scrollbar-hide::-webkit-scrollbar-track {
+  background: transparent;
+} */
