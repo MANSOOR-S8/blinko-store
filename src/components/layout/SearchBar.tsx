@@ -19,10 +19,9 @@ export default function SearchBar() {
   };
 
   return (
-    <form 
-      onSubmit={handleSearch} 
-      className="flex flex-1 items-center max-w-2xl bg-white rounded-full border border-gray-300 overflow-hidden focus-within:ring-2 focus-within:ring-orange-400 focus-within:border-orange-400 transition-all shadow-sm"
-    >
+    <form
+      onSubmit={handleSearch}
+      className="flex flex-1 items-center max-w-2xl bg-white rounded-full border border-gray-300 overflow-hidden focus-within:ring-2 focus-within:ring-orange-400 focus-within:border-orange-400 transition-all shadow-sm">
       <input
         type="text"
         placeholder="Search for products, brands and more..."
@@ -30,10 +29,9 @@ export default function SearchBar() {
         onChange={(e) => setQuery(e.target.value)}
         className="w-full pl-5 pr-3 py-2.5 outline-none text-gray-700 bg-transparent placeholder-gray-400"
       />
-      <button 
-        type="submit" 
-        className="px-5 py-2.5 bg-orange-400 hover:bg-orange-500 text-white transition-colors flex items-center justify-center"
-      >
+      <button
+        type="submit"
+        className="px-5 py-2.5 bg-[var(--primary-color)] text-white shadow-md shadow-[#f8bd19]/30 text-white transition-colors flex items-center justify-center">
         <Search size={20} />
       </button>
     </form>

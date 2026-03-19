@@ -1,1 +1,9 @@
-﻿export default function Placeholder() { return <div>'src/app/(auth)/login/page.tsx'</div>; }
+import LoginForm from "@/components/auth/LoginForm";
+
+export default function LoginPage() {
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-gray-50/50 p-4">
+      <LoginForm />
+    </main>
+  );
+}

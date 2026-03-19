@@ -93,6 +93,10 @@ export default function Navbar() {
               <Link href="/dashboard/profile" title="Profile" className="p-1.5 rounded-full bg-gray-800 hover:bg-orange-500 text-gray-300 hover:text-white transition-all transform hover:scale-105">
                 <User className="h-5 w-5" />
               </Link>
+              
+              <Link href="/login" className="text-gray-300 hover:text-orange-400 font-medium text-sm transition-colors">
+                Login
+              </Link>
 
               <Link href="/cart" className="relative p-1.5 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors">
                 <ShoppingCart className="h-5 w-5" />
@@ -123,12 +127,15 @@ export default function Navbar() {
                 <CreditCard className="h-5 w-5" /> Proceed to Checkout
               </Link>
               <div className="flex items-center justify-between">
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-wrap">
                   <Link href="/dashboard/settings" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-gray-300 hover:text-white">
                     <Settings className="h-5 w-5" /> Settings
                   </Link>
                   <Link href="/dashboard/profile" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-gray-300 hover:text-white">
                     <User className="h-5 w-5" /> Profile
+                  </Link>
+                  <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-orange-400 hover:text-orange-300 font-medium">
+                    Login
                   </Link>
                 </div>
                 <Link href="/cart" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-orange-400 font-medium">
