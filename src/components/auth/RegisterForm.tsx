@@ -16,7 +16,9 @@ export default function RegisterForm() {
   return (
     <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          Create Account
+        </h2>
         <p className="text-gray-500">Join us to start shopping seamlessly</p>
       </div>
 
@@ -27,7 +29,7 @@ export default function RegisterForm() {
             <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Full Name"
               required
               className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
             />
@@ -35,12 +37,14 @@ export default function RegisterForm() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Email Address</label>
+          <label className="text-sm font-medium text-gray-700">
+            Email Address
+          </label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="email"
-              placeholder="you@example.com"
+              placeholder="Email"
               required
               className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
             />
@@ -60,15 +64,20 @@ export default function RegisterForm() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 focus:outline-none"
-            >
-              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 focus:outline-none">
+              {showPassword ? (
+                <EyeOff className="w-5 h-5" />
+              ) : (
+                <Eye className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Confirm Password</label>
+          <label className="text-sm font-medium text-gray-700">
+            Confirm Password
+          </label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -80,17 +89,19 @@ export default function RegisterForm() {
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 focus:outline-none"
-            >
-              {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 focus:outline-none">
+              {showConfirmPassword ? (
+                <EyeOff className="w-5 h-5" />
+              ) : (
+                <Eye className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold flex items-center justify-center py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-orange-600/30 active:scale-[0.98] mt-2"
-        >
+          className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold flex items-center justify-center py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-orange-600/30 active:scale-[0.98] mt-2">
           Create Account
         </button>
       </form>
@@ -100,8 +111,7 @@ export default function RegisterForm() {
           Already have an account?{" "}
           <Link
             href="/login"
-            className="text-gray-900 hover:underline font-semibold"
-          >
+            className="text-gray-900 hover:underline font-semibold">
             Sign in
           </Link>
         </p>

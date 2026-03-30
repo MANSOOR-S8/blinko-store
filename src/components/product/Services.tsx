@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "@/store/hooks";
 import { fetchProducts } from "../../store/slices/productSlice";
 
 import {
@@ -13,6 +14,7 @@ import {
   TbLock,
   TbHeadset,
 } from "react-icons/tb";
+import FeaturedCategories from "../home/FeaturedCategories";
 
 type ServiceType = {
   id: number;
@@ -63,7 +65,7 @@ const services: ServiceType[] = [
 ];
 
 export default function ServicesCard({ showAddToCart = false }: Props) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { products, loading, error } = useSelector(
     (state: any) => state.products,
@@ -76,6 +78,7 @@ export default function ServicesCard({ showAddToCart = false }: Props) {
   return (
     <>
       {/* Services Section */}
+
       <section className="bg-white border-gray-200 border-y">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6">
           {services.map((service) => {
@@ -102,6 +105,7 @@ export default function ServicesCard({ showAddToCart = false }: Props) {
             );
           })}
         </div>
+        <FeaturedCategories />
       </section>
 
       {/* Product Cards Section */}

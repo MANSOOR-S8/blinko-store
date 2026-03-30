@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/layout/Navbar";
 import HomeBanner from "@/app/homeSlide";
-import FeaturedCategories from "@/components/home/FeaturedCategories";
+// import FeaturedCategories from "@/components/home/FeaturedCategories";
 import ServicesCard from "@/components/product/Services";
 import ProductGallery from "@/components/product/ProductGallery";
 import NewsletterSection from "@/components/home/NewsletterSection";
@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <HomeBanner />
       <ServicesCard />
-      <FeaturedCategories />
+      {/* <FeaturedCategories /> */}
       <ProductGallery />
       <NewsletterSection />
       <Footer />

@@ -1,6 +1,6 @@
 // placeholder for src/store/slices/uiSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 // Product Types
 export interface Product {
@@ -22,7 +22,10 @@ interface ProductState {
 
 // Initial State
 const initialState: ProductState = {
-  products: [],
+  products: [
+    { id: 1, title: "Premium Wireless Headphones", description: "High quality wireless headphones.", price: 299.00, discount: 0, img: "/images/products/p1.png" },
+    { id: 2, title: "Minimalist Cotton T-Shirt", description: "100% Cotton soft t-shirt.", price: 25.00, discount: 0, img: "/images/products/p2.png" },
+  ],
   loading: false,
   error: null,
   singleProduct: null,
@@ -70,6 +73,18 @@ const productSlice = createSlice({
     clearSingleProduct: (state) => {
       state.singleProduct = null;
     },
+    addProduct: (state, action: PayloadAction<Product>) => {
+      state.products.push(action.payload);
+    },
+    deleteProduct: (state, action: PayloadAction<string | number>) => {
+      state.products = state.products.filter(p => String(p.id) !== String(action.payload));
+    },
+    updateProduct: (state, action: PayloadAction<Product>) => {
+      const idx = state.products.findIndex(p => String(p.id) === String(action.payload.id));
+      if (idx !== -1) {
+        state.products[idx] = action.payload;
+      }
+    },
   },
   extraReducers: (builder) => {
     // Fetch All Products
@@ -109,5 +124,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { clearError, clearSingleProduct } = productSlice.actions;
+export const { clearError, clearSingleProduct, addProduct, deleteProduct, updateProduct } = productSlice.actions;
 export default productSlice.reducer;

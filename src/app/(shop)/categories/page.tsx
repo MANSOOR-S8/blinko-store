@@ -1,14 +1,15 @@
-﻿"use client";
+"use client";
 
 import { useEffect } from "react";
 import ProductCard from "@/components/product/ProductCard";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "@/store/hooks";
 import { fetchProducts } from "@/store/slices/productSlice";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export default function AllCategories() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { products, loading, error } = useSelector(
     (state: any) => state.products,

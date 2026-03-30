@@ -4,12 +4,33 @@ import { useState } from "react";
 import { UploadCloud, X, Plus, Save, ArrowLeft, Info, Tags, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { addProduct } from "@/store/slices/productSlice";
+import { useRouter } from "next/navigation";
 
-export default function EditProductPage({ params }: { params: { id: string } }) {
-  const [images, setImages] = useState<string[]>(["/images/products/p1.png"]);
-  const [variants, setVariants] = useState([{ id: 1, name: "Color", values: ["Black", "Silver"] }]);
+export default function AddProductPage() {
+  const [images, setImages] = useState<string[]>([]);
+  const [variants, setVariants] = useState([{ id: 1, name: "Color", values: ["Red", "Blue"] }]);
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleSave = () => {
+    if (!title) return alert("Please enter a product title");
+    dispatch(addProduct({
+      id: Date.now(),
+      title,
+      price: Number(price) || 0,
+      description: "",
+      discount: 0,
+      img: images.length > 0 ? images[0] : "/images/products/p1.png"
+    }));
+    router.push("/admin/products");
+  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Mock image upload
     if (e.target.files && e.target.files.length > 0) {
       const newImage = URL.createObjectURL(e.target.files[0]);
       setImages([...images, newImage]);
@@ -32,17 +53,20 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
             <ArrowLeft size={20} className="text-[var(--text-color)]" />
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-[var(--heading-color)]">Edit Product #{params.id}</h1>
-            <p className="text-[var(--light-text)] mt-1">Update your product listing details and variants.</p>
+            <h1 className="text-3xl font-bold text-[var(--heading-color)]">Add New Product</h1>
+            <p className="text-[var(--light-text)] mt-1">Create a new product listing with details and variants.</p>
           </div>
         </div>
         <div className="flex items-center space-x-3 w-full sm:w-auto">
           <button className="flex-1 sm:flex-none px-6 py-2.5 bg-white border border-[var(--border-color)] text-[var(--heading-color)] rounded-xl font-medium hover:bg-gray-50 transition-colors shadow-sm">
-            Discard Changes
+            Save Draft
           </button>
-          <button className="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-6 py-2.5 bg-[var(--primary-color)] hover:bg-[#e5a800] text-white rounded-xl font-medium transition-colors shadow-md shadow-[#f8bd19]/20">
+          <button 
+            onClick={handleSave}
+            className="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-6 py-2.5 bg-[var(--primary-color)] hover:bg-[#e5a800] text-white rounded-xl font-medium transition-colors shadow-md shadow-[#f8bd19]/20"
+          >
             <Save size={20} />
-            <span>Update Product</span>
+            <span>Publish Product</span>
           </button>
         </div>
       </div>
@@ -60,7 +84,9 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                 <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Product Title *</label>
                 <input 
                   type="text" 
-                  defaultValue="Premium Wireless Headphones"
+                  placeholder="e.g. Premium Wireless Headphones" 
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] transition-all bg-gray-50 focus:bg-white"
                 />
               </div>
@@ -68,9 +94,10 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                 <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Detailed Description</label>
                 <textarea 
                   rows={6}
-                  defaultValue="Experience crystal-clear audio with our premium wireless headphones. Featuring active noise cancellation."
+                  placeholder="Describe your product... Features, materials, care instructions, etc." 
                   className="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] transition-all bg-gray-50 focus:bg-white resize-y"
                 ></textarea>
+                <p className="text-xs text-[var(--light-text)] mt-2">Provide a comprehensive description to be displayed on the product details page. HTML is supported.</p>
               </div>
             </div>
           </div>
@@ -85,15 +112,25 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                 <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Regular Price ($)</label>
                 <input 
                   type="number" 
-                  defaultValue={299.00}
+                  placeholder="0.00" 
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] transition-all flex-[1]"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">SKU</label>
+                <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Sale Price ($)</label>
+                <input 
+                  type="number" 
+                  placeholder="0.00" 
+                  className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">SKU (Stock Keeping Unit)</label>
                 <input 
                   type="text" 
-                  defaultValue={`PROD-${params.id}`}
+                  placeholder="e.g. PROD-12345" 
                   className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] transition-all"
                 />
               </div>
@@ -101,7 +138,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                 <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Stock Quantity</label>
                 <input 
                   type="number" 
-                  defaultValue={45}
+                  placeholder="0" 
                   className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] transition-all"
                 />
               </div>
@@ -123,28 +160,36 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                   <div className="flex items-center justify-between mb-4">
                     <input 
                       type="text" 
+                      placeholder="Option Name (e.g. Size, Color)" 
                       defaultValue={v.name}
                       className="px-3 py-1.5 border border-[var(--border-color)] rounded-lg text-sm font-medium focus:outline-none focus:border-[var(--primary-color)]"
                     />
-                    <button onClick={() => setVariants(variants.filter(variant => variant.id !== v.id))} className="text-red-500 hover:text-red-700 bg-white p-1.5 rounded-md border border-[var(--border-color)] shadow-sm">
+                    <button className="text-red-500 hover:text-red-700 bg-white p-1.5 rounded-md border border-[var(--border-color)] shadow-sm">
                       <Trash2 size={16} />
                     </button>
                   </div>
                   <div>
                     <input 
                       type="text" 
+                      placeholder="Enter values separated by commas (e.g. Red, Blue, Green)" 
                       defaultValue={v.values.join(", ")}
                       className="w-full px-4 py-2 rounded-lg border border-[var(--border-color)] focus:outline-none focus:border-[var(--primary-color)] bg-white"
                     />
                   </div>
                 </div>
               ))}
+              {variants.length === 0 && (
+                <div className="text-center py-8 text-[var(--light-text)] bg-gray-50 rounded-xl border border-dashed border-gray-300">
+                  No options added. Click "Add Option" to add sizes, colors, etc.
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Right Column (Media & Metdata) */}
         <div className="space-y-6">
+          {/* Media Upload */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-[var(--border-color)]">
             <h2 className="text-xl font-bold text-[var(--heading-color)] mb-4">Product Images</h2>
             
@@ -160,7 +205,8 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                 <div className="w-12 h-12 bg-[var(--primary-color)]/10 text-[var(--primary-color)] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <UploadCloud size={24} />
                 </div>
-                <p className="font-medium text-[var(--heading-color)]">Click to upload</p>
+                <p className="font-medium text-[var(--heading-color)]">Click to upload or drag & drop</p>
+                <p className="text-xs text-[var(--light-text)]">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
               </div>
             </div>
 
@@ -180,6 +226,42 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
               </div>
             )}
           </div>
+
+          {/* Organization */}
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-[var(--border-color)]">
+            <h2 className="text-xl font-bold text-[var(--heading-color)] mb-4">Organization</h2>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Category</label>
+                <select className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] bg-gray-50">
+                  <option value="">Select a category</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="clothing">Clothing</option>
+                  <option value="furniture">Furniture</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Brand</label>
+                <input 
+                  type="text" 
+                  placeholder="e.g. Nike, Apple" 
+                  className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] bg-gray-50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-[var(--heading-color)] mb-2">Tags</label>
+                <input 
+                  type="text" 
+                  placeholder="Separate tags with commas" 
+                  className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]/20 focus:border-[var(--primary-color)] bg-gray-50"
+                />
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
