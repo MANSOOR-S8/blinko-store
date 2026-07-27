@@ -16,7 +16,7 @@ export default function ProductCard({ product, showAddToCart = true }: Props) {
 
   return (
     <>
-      <div className="">
+      <div>
         <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <Link href={`/product/${product.id}`}>
             <div className="relative h-80 w-full">

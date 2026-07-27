@@ -20,14 +20,15 @@ export default function ErrorPage({
         <div className="w-24 h-24 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
           <AlertCircle size={48} />
         </div>
-        <h1 className="text-2xl font-bold text-[var(--heading-color)] mb-4">Something went wrong!</h1>
+        <h1 className="text-2xl font-bold text-[var(--heading-color)] mb-4">
+          Something went wrong!
+        </h1>
         <p className="text-[var(--text-color)] mb-8">
           We've encountered an unexpected error. Our team has been notified.
         </p>
-        <button 
+        <button
           onClick={() => reset()}
-          className="w-full bg-[var(--primary-color)] hover:bg-[#e5a800] text-white font-medium py-3 rounded-xl transition-all shadow-md shadow-[#f8bd19]/20"
-        >
+          className="w-full bg-[var(--primary-color)] hover:bg-[#e5a800] cursor-pointer text-white font-medium py-3 rounded-xl transition-all shadow-md shadow-[#f8bd19]/20">
           Try Again
         </button>
       </div>
