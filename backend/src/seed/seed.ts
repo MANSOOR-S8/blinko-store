@@ -76,28 +76,59 @@ async function seed() {
       },
     ];
 
+
+    // FAhad changes
+
+
+
+    // for (let i = 0; i < sampleProducts.length; i++) {
+    //   const p = sampleProducts[i];
+    //   const category = categories[i % categories.length];
+    //   const brand = brands[i % brands.length];
+    //   await Product.create({
+    //     name: p.name,
+    //     slug: generateSlug(p.name),
+    //     description: `${p.name} — high quality, built to last, backed by our satisfaction guarantee.`,
+    //     price: p.price,
+    //     discountPercentage: p.discountPercentage,
+    //     category: category._id,
+    //     brand: brand._id,
+    //     thumbnail: "/images/products/placeholder.png",
+    //     images: ["/images/products/placeholder.png"],
+    //     stock: 20 + i,
+    //     sku: generateSku(),
+    //     isFeatured: i % 3 === 0,
+    //     isTrending: i % 2 === 0,
+    //     isNewArrival: i < 3,
+    //     isBestSeller: i % 4 === 0,
+    //   });
+    // }
+
     for (let i = 0; i < sampleProducts.length; i++) {
-      const p = sampleProducts[i];
-      const category = categories[i % categories.length];
-      const brand = brands[i % brands.length];
-      await Product.create({
-        name: p.name,
-        slug: generateSlug(p.name),
-        description: `${p.name} — high quality, built to last, backed by our satisfaction guarantee.`,
-        price: p.price,
-        discountPercentage: p.discountPercentage,
-        category: category._id,
-        brand: brand._id,
-        thumbnail: "/images/products/placeholder.png",
-        images: ["/images/products/placeholder.png"],
-        stock: 20 + i,
-        sku: generateSku(),
-        isFeatured: i % 3 === 0,
-        isTrending: i % 2 === 0,
-        isNewArrival: i < 3,
-        isBestSeller: i % 4 === 0,
-      });
-    }
+  const p = sampleProducts[i];
+  const category = categories[i % categories.length];
+  const brand = brands[i % brands.length];
+  const imageNumber = (i % 9) + 1; // product-1.png se product-9.png tak cycle karega
+  const imagePath = `/images/products/product-${imageNumber}.png`;
+
+  await Product.create({
+    name: p.name,
+    slug: generateSlug(p.name),
+    description: `${p.name} — high quality, built to last, backed by our satisfaction guarantee.`,
+    price: p.price,
+    discountPercentage: p.discountPercentage,
+    category: category._id,
+    brand: brand._id,
+    thumbnail: imagePath,
+    images: [imagePath],
+    stock: 20 + i,
+    sku: generateSku(),
+    isFeatured: i % 3 === 0,
+    isTrending: i % 2 === 0,
+    isNewArrival: i < 3,
+    isBestSeller: i % 4 === 0,
+  });
+}
     console.log(`Created ${sampleProducts.length} products.`);
   }
 
