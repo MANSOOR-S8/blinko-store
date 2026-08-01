@@ -43,7 +43,7 @@ export default function CartPage() {
                   <div className="flex items-center space-x-4">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 relative bg-gray-50 rounded-lg flex-shrink-0">
                       <Image
-                        src={item.img || "/images/products/p1.png"}
+                        src={item.img || "/images/products/product-1.png"}
                         alt={item.title}
                         fill
                         className="object-contain p-2 mix-blend-multiply"

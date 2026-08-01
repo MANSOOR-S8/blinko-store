@@ -92,7 +92,7 @@ export default function ComponentsDemoPage() {
             </div>
             <div className="w-48 h-48 relative border rounded-xl overflow-hidden shadow-sm">
               <p className="absolute top-2 w-full text-center text-xs z-10 bg-white/80 p-1">Valid URL</p>
-              <ImageWithFallback src="/images/products/p1.png" alt="valid" fill className="object-cover" />
+              <ImageWithFallback src="/images/products/product-1.png" alt="valid" fill className="object-cover" />
             </div>
           </div>
         </section>

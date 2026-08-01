@@ -21,8 +21,8 @@ export default function ProductDetailsPage({ params }: { params: { slug: string 
     reviews: 124,
     description: "Experience crystal-clear audio with our premium wireless headphones. Featuring active noise cancellation, 30-hour battery life, and ultra-comfortable ear cushions for all-day listening.",
     images: [
-      "/images/products/p1.png",
-      "/images/products/p2.png",
+      "/images/products/product-1.png",
+      "/images/products/product-2.png",
       "/images/products/p3.png",
     ],
     features: [

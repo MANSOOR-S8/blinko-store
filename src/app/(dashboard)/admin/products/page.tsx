@@ -18,8 +18,14 @@ export default function AdminProductsPage() {
 
   // Fallback data if backend is not running or products array is empty
   const displayProducts = products.length > 0 ? products : [
-    { id: 1, title: "Premium Wireless Headphones", price: 299.00, img: "/images/products/p1.png" },
-    { id: 2, title: "Minimalist Cotton T-Shirt", price: 25.00, img: "/images/products/p2.png" },
+
+
+    // ider ma na change keya ha Fahad images ka name ghalat ha 
+    
+    
+    
+    { id: 1, title: "Premium Wireless Headphones", price: 299.00, img: "/images/products/product-1.png" },
+    { id: 2, title: "Minimalist Cotton T-Shirt", price: 25.00, img: "/images/products/product-2.png" },
   ];
 
   const [searchQuery, setSearchQuery] = useState("");

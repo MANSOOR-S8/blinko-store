@@ -2,14 +2,24 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
+// Fahad changes
 // Product Types
+// export interface Product {
+//   id: number;
+//   img: string;
+//   title: string;
+//   description: string;
+//   price: number;
+//   discount: number;
+// }
+
 export interface Product {
-  id: number;
-  img: string;
-  title: string;
+  id: string;
+  name: string;
   description: string;
   price: number;
-  discount: number;
+  discountPercentage: number;
+  thumbnail: string;
 }
 
 // State Types
@@ -23,8 +33,8 @@ interface ProductState {
 // Initial State
 const initialState: ProductState = {
   products: [
-    { id: 1, title: "Premium Wireless Headphones", description: "High quality wireless headphones.", price: 299.00, discount: 0, img: "/images/products/p1.png" },
-    { id: 2, title: "Minimalist Cotton T-Shirt", description: "100% Cotton soft t-shirt.", price: 25.00, discount: 0, img: "/images/products/p2.png" },
+    { id: 1, title: "Premium Wireless Headphones", description: "High quality wireless headphones.", price: 299.00, discount: 0, img: "/images/products/product-1.png" },
+    { id: 2, title: "Minimalist Cotton T-Shirt", description: "100% Cotton soft t-shirt.", price: 25.00, discount: 0, img: "/images/products/product-2.png" },
   ],
   loading: false,
   error: null,
@@ -32,7 +42,10 @@ const initialState: ProductState = {
 };
 
 // API Base URL
-const API_URL = "http://localhost:5000";
+// const API_URL = "http://localhost:5000";
+
+// API ERROR FAHAD SOLVE
+const API_URL = "http://localhost:5000/api";
 
 // Async Thunk for fetching all products
 export const fetchProducts = createAsyncThunk(
@@ -40,7 +53,12 @@ export const fetchProducts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${API_URL}/products`);
-      return response.data;
+      // console lagya 
+         console.log("API Response:", response.data);
+
+      // return response.data;
+      // FAHAD changes
+      return response.data.data.products;
     } catch (error) {
       const axiosError = error as AxiosError;
       return rejectWithValue(axiosError.response?.data || axiosError.message);

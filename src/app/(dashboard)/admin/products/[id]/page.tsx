@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function EditProductPage({ params }: { params: { id: string } }) {
-  const [images, setImages] = useState<string[]>(["/images/products/p1.png"]);
+  const [images, setImages] = useState<string[]>(["/images/products/product-1.png"]);
   const [variants, setVariants] = useState([{ id: 1, name: "Color", values: ["Black", "Silver"] }]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

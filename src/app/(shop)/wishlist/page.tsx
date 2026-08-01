@@ -7,8 +7,8 @@ import Navbar from "@/components/layout/Navbar";
 
 export default function WishlistPage() {
   const wishlistItems = [
-    { id: 1, name: "Premium Wireless Headphones", price: "$299.00", image: "/images/products/p1.png", stock: "In Stock" },
-    { id: 2, name: "Minimalist Cotton T-Shirt", price: "$25.00", image: "/images/products/p2.png", stock: "In Stock" },
+    { id: 1, name: "Premium Wireless Headphones", price: "$299.00", image: "/images/products/product-1.png", stock: "In Stock" },
+    { id: 2, name: "Minimalist Cotton T-Shirt", price: "$25.00", image: "/images/products/product-2.png", stock: "In Stock" },
     { id: 3, name: "Ergonomic Office Chair", price: "$199.00", image: "/images/products/p3.png", stock: "Out of Stock" },
   ];
 

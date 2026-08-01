@@ -69,7 +69,7 @@ export default function AddProductPage() {
             ? `http://localhost:5000/uploads/${data.product.image}`
             : images.length > 0
               ? images[0]
-              : "/images/products/p1.png",
+              : "/images/products/product-1.png",
         }),
       );
 

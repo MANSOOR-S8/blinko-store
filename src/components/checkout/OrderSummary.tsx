@@ -25,7 +25,7 @@ export default function OrderSummary({ shippingFee }: OrderSummaryProps) {
           cartItem.map((item: any) => (
             <div key={item.id} className="flex gap-4 items-center">
               <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-white border border-gray-100 shrink-0">
-                <Image src={item.img || "/images/products/p1.png"} alt={item.title || "Product"} fill className="object-contain p-2" />
+                <Image src={item.img || "/images/products/product-1.png"} alt={item.title || "Product"} fill className="object-contain p-2" />
               </div>
               <div className="flex-1">
                 <h4 className="font-medium text-sm text-gray-900 line-clamp-2">{item.title}</h4>
